@@ -1,0 +1,19 @@
+{
+  "name": "@qudeaiframework/api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["ai", "agent", "framework", "api"],
+  "author": "Your Name or Organization",
+  "license": "MIT",
+  "description": "A framework API for creating AI agents.",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "firebase-admin": "^13.0.2",
+    "openai": "^4.77.3"
+  }
+}
