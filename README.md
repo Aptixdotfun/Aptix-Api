@@ -1,7 +1,7 @@
-![Logo](https://res.cloudinary.com/docg651du/image/upload/v1736280044/framework_api_tqsocz.png)
-# Qude Framework API for Interacting with AI Agents on local machine and api.qude.ai
+![Logo](https://media.discordapp.net/attachments/1333920253532569601/1333988510171926589/shdfghfdsg.png?ex=679b8ddd&is=679a3c5d&hm=23c449d8e7e6d723cda1f1f2da4c6c8ef9a9ad26df31c94a186a2b3d85711fc7&=&format=webp&quality=lossless)
+# Aptix Framework API for Interacting with AI Agents on local machine
 
-Welcome to the **Qude Framework API**, a backend service enabling seamless interaction with AI agents created using the **Qude Framework**. This API provides an interface to fetch agent metadata and interact with their AI capabilities, leveraging OpenAI's GPT models.
+Welcome to the **Aptix Framework API**, a backend service enabling seamless interaction with AI agents created using the **Qude Framework**. This API provides an interface to fetch agent metadata and interact with their AI capabilities, leveraging OpenAI's GPT models.
 
 ---
 
