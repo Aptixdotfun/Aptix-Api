@@ -1,14 +1,14 @@
 ![Logo](https://media.discordapp.net/attachments/1333920253532569601/1333988510171926589/shdfghfdsg.png?ex=679b8ddd&is=679a3c5d&hm=23c449d8e7e6d723cda1f1f2da4c6c8ef9a9ad26df31c94a186a2b3d85711fc7&=&format=webp&quality=lossless)
 # Aptix Framework API for Interacting with AI Agents on local machine
 
-Welcome to the **Aptix Framework API**, a backend service enabling seamless interaction with AI agents created using the **Qude Framework**. This API provides an interface to fetch agent metadata and interact with their AI capabilities, leveraging OpenAI's GPT models.
+Welcome to the **Aptix Framework API**, a backend service enabling seamless interaction with AI agents created using the **Aptix Framework**. This API provides an interface to fetch agent metadata and interact with their AI capabilities, leveraging OpenAI's GPT models.
 
 ---
 
 ## Features
 
-- **Agent Metadata Retrieval**: Access detailed information about AI agents created using the Qude Framework.
-- **Dynamic AI Interactions**: Communicate with agents powered by the Qude Framework and receive real-time, intelligent responses.
+- **Agent Metadata Retrieval**: Access detailed information about AI agents created using the Aptix Framework.
+- **Dynamic AI Interactions**: Communicate with agents powered by the Aptix Framework and receive real-time, intelligent responses.
 - **Local Deployment**: Run the API on your local machine for development and testing.
 - **Customizable Backend**: Use Firebase locally for a fully customizable backend experience.
 - **RESTful Endpoints**: Developer-friendly API design for easy integration.
@@ -53,8 +53,8 @@ npm install
 ## Setup
 #### 1. Clone the Repository
 ```bash
-git clone https://github.com/qudeai/qudeframework-api.git
-cd qudeframework-api
+git clone https://github.com/aptixdotfun/aptixframework-api.git
+cd aptixframework-api
 ```
 #### 2. Install Dependencies
 ```bash
@@ -178,12 +178,12 @@ async function interactWithAgent(agentName, message) {
 interactWithAgent("Aura", "Hello there!");
 ```
 
-# Using api.qude.ai
+# Using api.aptix.ai
 ## Prerequisites
 
 To use the API, ensure you have the following:
 
-1. **API Access**: The API is publicly available at [api.qude.ai](https://api.qude.ai).
+1. **API Access**: The API is publicly available at [api.qude.ai](https://api.aptix.ai).
 2. **API Client**: Use a tool like `curl`, Postman, or any HTTP client library in your preferred programming language.
 
 ---
@@ -191,18 +191,18 @@ To use the API, ensure you have the following:
 ## API Endpoints
 
 ### 1. Fetch Agent Details
-Retrieve metadata about an agent from the official Qude Framework database.
+Retrieve metadata about an agent from the official Aptix Framework database.
 
 **GET** `/api/agent/:name`
 
 **Request Example**
 ```bash
-curl https://api.qude.ai/api/agent/Aura
+curl https://api.aptix.ai/api/agent/Aura
 ```
 **Response Example:**
 ```bash
 {
-  "name": "Aura",
+  "name": "Bob",
   "description": "An intelligent agent designed to assist with tasks.",
   "createdAt": "2025-01-01T12:00:00Z"
 }
@@ -214,12 +214,12 @@ Send a message to an agent and receive an AI-generated response using query para
 
 **Request Example:**
 ```bash
-curl "https://api.qude.ai/api/agent/Aura/interact?message=Hello!"
+curl "https://api.aptix.ai/api/agent/Bob/interact?message=Hello!"
 ```
 **Response Example:**
 ```bash
 {
-  "agent": "Aura",
+  "agent": "Bob",
   "reply": "Hello! How can I assist you today?"
 }
 ```
@@ -230,14 +230,14 @@ Send a message to an agent and receive an AI-generated response using a JSON pay
 
 **Request Example:**
 ```bash
-curl -X POST "https://api.qude.ai/api/agent/Aura/interact" \
+curl -X POST "https://api.aptix.ai/api/agent/Bob/interact" \
 -H "Content-Type: application/json" \
--d '{"message": "Hello, Aura?"}'
+-d '{"message": "Hello, Bob?"}'
 ```
 **Response Example:**
 ```bash
 {
-  "agent": "Aura",
+  "agent": "Bob",
   "reply": "Hello, how can i help you?"
 }
 ```
@@ -267,13 +267,13 @@ async function interactWithAgent(agentName, message) {
 interactWithAgent("Aura", "Hello there!");
 ```
 ---
-# USING api.qude.ai
+# USING api.aptix.ai
 
 ## Prerequisites
 
 To use the API, ensure you have the following:
 
-1. **API Access**: The API is publicly available at [api.qude.ai](https://api.qude.ai).
+1. **API Access**: The API is publicly available at [api.qude.ai](https://api.aptix.ai).
 2. **API Client**: Use a tool like `curl`, Postman, or any HTTP client library in your preferred programming language.
 
 ---
@@ -281,18 +281,18 @@ To use the API, ensure you have the following:
 ## API Endpoints
 
 ### 1. Fetch Agent Details
-Retrieve metadata about an agent from the official Qude Framework database.
+Retrieve metadata about an agent from the official Aptix Framework database.
 
 **GET** `/api/agent/:name`
 
 #### Request Example:
 ```bash
-curl https://api.qude.ai/api/agent/Aura
+curl https://api.aptix.ai/api/agent/Bob
 ```
 **Response Example:**
 ```bash
 {
-  "name": "Aura",
+  "name": "Bob",
   "description": "An intelligent agent designed to assist with tasks.",
   "createdAt": "2025-01-01T12:00:00Z"
 }
@@ -304,12 +304,12 @@ Send a message to an agent and receive an AI-generated response using query para
 
 **Request Example:**
 ```bash
-curl "https://api.qude.ai/api/agent/Aura/interact?message=Hello!"
+curl "https://api.aptix.ai/api/agent/Aura/interact?message=Hello!"
 ```
 **Response Example:**
 ```bash
 {
-  "agent": "Aura",
+  "agent": "Bob",
   "reply": "Hello! How can I assist you today?"
 }
 ```
@@ -320,14 +320,14 @@ Send a message to an agent and receive an AI-generated response using a JSON pay
 
 **Request Example:**
 ```bash
-curl -X POST "https://api.qude.ai/api/agent/Aura/interact" \
+curl -X POST "https://api.qude.ai/api/agent/Bob/interact" \
 -H "Content-Type: application/json" \
--d '{"message": "Hello, Aura"}'
+-d '{"message": "Hello, Bob"}'
 ```
 **Response Example:**
 ```bash
 {
-  "agent": "Aura",
+  "agent": "Bob",
   "reply": "Hey, how can i help you?"
 }
 ```
@@ -337,7 +337,7 @@ Here’s how you can interact with the API programmatically:
 const fetch = require("node-fetch");
 
 async function interactWithAgent(agentName, message) {
-  const response = await fetch(`https://api.qude.ai/api/agent/${agentName}/interact`, {
+  const response = await fetch(`https://api.aptix.ai/api/agent/${agentName}/interact`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message }),
@@ -352,12 +352,12 @@ async function interactWithAgent(agentName, message) {
   console.log("Agent Reply:", data.reply);
 }
 
-interactWithAgent("Aura", "Hello there!");
+interactWithAgent("Bob", "Hello there!");
 ```
 
-## Notes for api.qude.ai
+## Notes for api.aptix.ai
 - No Local Setup Required: This API is fully hosted and ready to use—no Firebase setup or service account keys needed.
-- Agent Metadata: All agent information is sourced directly from the official Qude Framework database.
+- Agent Metadata: All agent information is sourced directly from the official Aptix Framework database.
 
 ## Contributing
 - We welcome contributions to enhance this API! If you encounter issues or have suggestions, feel free to open an issue or submit a pull request on our GitHub repository.
