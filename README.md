@@ -1,364 +1,161 @@
 ![Logo](https://media.discordapp.net/attachments/1333920253532569601/1333988510171926589/shdfghfdsg.png?ex=679b8ddd&is=679a3c5d&hm=23c449d8e7e6d723cda1f1f2da4c6c8ef9a9ad26df31c94a186a2b3d85711fc7&=&format=webp&quality=lossless)
-# Aptix Framework API for Interacting with AI Agents on local machine
 
-Welcome to the **Aptix Framework API**, a backend service enabling seamless interaction with AI agents created using the **Qude Framework**. This API provides an interface to fetch agent metadata and interact with their AI capabilities, leveraging OpenAI's GPT models.
+# Aptix API
 
----
+> Official backend service for Aptix AI agents on the Solana blockchain.
 
-## Features
+[![Version](https://img.shields.io/badge/version-1.2.4-blue.svg)](https://github.com/aptixdotfun/aptix-api)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Node.js](https://img.shields.io/badge/node-%3E%3D16.0.0-brightgreen)](https://nodejs.org)
+[![Solana](https://img.shields.io/badge/solana-blockchain-purple)](https://solana.com)
 
-- **Agent Metadata Retrieval**: Access detailed information about AI agents created using the Qude Framework.
-- **Dynamic AI Interactions**: Communicate with agents powered by the Qude Framework and receive real-time, intelligent responses.
-- **Local Deployment**: Run the API on your local machine for development and testing.
-- **Customizable Backend**: Use Firebase locally for a fully customizable backend experience.
-- **RESTful Endpoints**: Developer-friendly API design for easy integration.
+The **Aptix API** provides a robust backend service enabling seamless interaction with AI agents created using the **Aptix Framework**. This API offers a secure interface to fetch agent metadata and interact with their AI capabilities, leveraging OpenAI's GPT models.
 
----
-# For Local Machine
+## 🔑 Key Features
 
-## Prerequisites
+- **Secure Agent Interactions**: Engage with Aptix AI agents through rate-limited, validated endpoints
+- **Enhanced Security**: Comprehensive error handling, input validation, and security middlewares
+- **Detailed Logging**: Winston-based logging for debugging and monitoring
+- **Developer-Friendly**: Clear error messages and consistent response formats
+- **Health Monitoring**: Built-in health check endpoint for monitoring system status
+- **Scalable Architecture**: Ready for production deployments at scale
 
-Ensure the following are installed and configured on your system:
+## 📋 Prerequisites
 
-1. **Node.js** (v16 or higher)  
-   [Download Node.js](https://nodejs.org/)
+- **Node.js** v16.0.0 or higher
+- **npm** or **yarn**
+- **Firebase** account and Firestore database
+- **OpenAI API** key
 
-2. **npm** (Node Package Manager)  
-   Comes bundled with Node.js.
+## 🚀 Quick Start
 
-3. **Firebase Service Account Key**  
-   Required for local Firestore authentication.
+### Installation
 
-4. **OpenAI API Key**  
-   Obtain an API key from [OpenAI](https://platform.openai.com/).
+1. Clone the repository:
+```bash
+git clone https://github.com/aptixdotfun/aptix-api.git
+cd aptix-api
+```
 
----
-
-## Dependencies
-
-The project utilizes the following dependencies:
-
-| Dependency         | Version  | Purpose                                                                 |
-|--------------------|----------|-------------------------------------------------------------------------|
-| `express`          | ^4.21.2  | Web framework for building API endpoints.                              |
-| `cors`             | ^2.8.5   | Middleware to handle Cross-Origin Resource Sharing (CORS).             |
-| `firebase-admin`   | ^13.0.2  | Firebase Admin SDK for Firestore integration.                          |
-| `dotenv`           | ^16.4.7  | Secure management of environment variables.                            |
-| `openai`           | ^4.77.3  | Integration with OpenAI’s GPT models for AI interactions.              |
-
-Install all dependencies:
+2. Install dependencies:
 ```bash
 npm install
 ```
-## Setup
-#### 1. Clone the Repository
+
+3. Set up environment variables:
 ```bash
-git clone https://github.com/qudeai/qudeframework-api.git
-cd qudeframework-api
+cp .env.example .env
 ```
-#### 2. Install Dependencies
-```bash
-npm install
-```
-#### 3. Configure Environment Variables
-- Create a .env file in the root directory:
-```bash
-touch .env
-```
-- Add the following variables to your .env file:
+
+4. Edit the `.env` file with your credentials:
 ```bash
 OPENAI_API_KEY=your-openai-api-key
 PORT=3000
-```
-#### 4. Add Firebase Credentials
-- Copy the sample file and replace placeholders with your Firebase credentials:
-```bash
-cp serviceAccountKey.example.json serviceAccountKey.json
-```
-
-- Edit: serviceAccountKey.json
-```bash
-{
-  "type": "service_account",
-  "project_id": "your-project-id",
-  "private_key_id": "your-private-key-id",
-  "private_key": "-----BEGIN PRIVATE KEY-----\\nYOUR_PRIVATE_KEY\\n-----END PRIVATE KEY-----\\n",
-  "client_email": "your-client-email@your-project-id.iam.gserviceaccount.com",
-  "client_id": "your-client-id",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/your-client-email@your-project-id.iam.gserviceaccount.com"
-}
+CORS_ORIGIN=*
+LOG_LEVEL=info
+NODE_ENV=development
+OPENAI_MODEL=gpt-3.5-turbo
 ```
 
-### Running the API Locally
-#### Start the server:
+5. Configure Firebase:
+- Option 1: Set `SERVICE_ACCOUNT_KEY` environment variable with JSON content
+- Option 2: Create `serviceAccountKey.json` file from the example:
+  ```bash
+  cp serviceAccountKey.example.json serviceAccountKey.json
+  ```
+  Then edit with your Firebase credentials.
+
+### Running the API
+
+#### Development Mode
 ```bash
-node index.js
-```
-#### Access the API locally:
-```bash
-http://localhost:3000
+npm run dev
 ```
 
-## API Endpoints
-#### 1. Fetch Agent Details
-- Retrieve metadata for an AI agent.
-
-**GET** `/api/agent/:name`
-
-- Request Example:
+#### Production Mode
 ```bash
-curl http://localhost:3000/api/agent/Aura
+npm start
 ```
-- Response Example:
-```bash
+
+## 🔌 API Endpoints
+
+### Health Check
+```
+GET /health
+```
+Returns health status of the API server.
+
+### Get Agent Details
+```
+GET /api/agent/:name
+```
+Fetches metadata for a specific AI agent.
+
+**Response Example:**
+```json
 {
   "name": "Aura",
-  "description": "An intelligent agent designed to assist with tasks.",
-  "createdAt": "2025-01-01T12:00:00Z"
+  "description": "Solana blockchain analyst",
+  "personality": "Helpful and concise market analyst",
+  "version": "1.0.0",
+  "capabilities": ["market-analysis", "token-tracking"]
 }
 ```
-#### 2. Interact with an Agent (GET Method)
-- Interact with an AI agent using a query parameter.
 
-**GET** `/api/agent/:name/interact?message=YourMessage`
-
-- Request Example:
-```bash 
-curl "http://localhost:3000/api/agent/Aura/interact?message=Hello!"
+### Interact with Agent
 ```
-- Response Example:
-```bash
+POST /api/agent/:name/interact
+```
+
+**Request Payload:**
+```json
+{
+  "message": "What is the current market cap of Solana?"
+}
+```
+
+**Response Example:**
+```json
 {
   "agent": "Aura",
-  "reply": "Hello! How can I assist you today?"
-}
-```
-#### 3. Interact with an Agent (POST Method)
-- Interact with an AI agent using a JSON payload.
-
-**POST** `/api/agent/:name/interact`
-
-- Request Example:
-```bash
-curl -X POST "http://localhost:3000/api/agent/Aura/interact" \
--H "Content-Type: application/json" \
--d '{"message": "What is the weather today?"}'
-```
-- Response Example:
-```bash
-{
-  "agent": "Aura",
-  "reply": "I'm sorry, I cannot provide real-time weather updates."
-}
-```
-## Example Usage in Node.js
-- Here’s how you can interact with the API programmatically:
-```bash
-const fetch = require("node-fetch");
-
-async function interactWithAgent(agentName, message) {
-  const response = await fetch(`http://localhost:3000/api/agent/${agentName}/interact`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message }),
-  });
-
-  if (!response.ok) {
-    console.error("Failed to interact with the agent:", response.statusText);
-    return;
-  }
-
-  const data = await response.json();
-  console.log("Agent Reply:", data.reply);
-}
-
-interactWithAgent("Aura", "Hello there!");
-```
-
-# Using api.qude.ai
-## Prerequisites
-
-To use the API, ensure you have the following:
-
-1. **API Access**: The API is publicly available at [api.qude.ai](https://api.qude.ai).
-2. **API Client**: Use a tool like `curl`, Postman, or any HTTP client library in your preferred programming language.
-
----
-
-## API Endpoints
-
-### 1. Fetch Agent Details
-Retrieve metadata about an agent from the official Qude Framework database.
-
-**GET** `/api/agent/:name`
-
-**Request Example**
-```bash
-curl https://api.qude.ai/api/agent/Aura
-```
-**Response Example:**
-```bash
-{
-  "name": "Aura",
-  "description": "An intelligent agent designed to assist with tasks.",
-  "createdAt": "2025-01-01T12:00:00Z"
-}
-```
-### 2. Interact with an Agent (GET Method)
-Send a message to an agent and receive an AI-generated response using query parameters.
-
-**GET** `/api/agent/:name/interact?message=YourMessage`
-
-**Request Example:**
-```bash
-curl "https://api.qude.ai/api/agent/Aura/interact?message=Hello!"
-```
-**Response Example:**
-```bash
-{
-  "agent": "Aura",
-  "reply": "Hello! How can I assist you today?"
-}
-```
-### 3. Interact with an Agent (POST Method)
-Send a message to an agent and receive an AI-generated response using a JSON payload.
-
-**POST** `/api/agent/:name/interact`
-
-**Request Example:**
-```bash
-curl -X POST "https://api.qude.ai/api/agent/Aura/interact" \
--H "Content-Type: application/json" \
--d '{"message": "Hello, Aura?"}'
-```
-**Response Example:**
-```bash
-{
-  "agent": "Aura",
-  "reply": "Hello, how can i help you?"
+  "reply": "As of the latest data, Solana has a market capitalization of approximately $21.4 billion.",
+  "timestamp": "2025-01-15T12:34:56.789Z"
 }
 ```
 
-## Example Usage in Node.js
-Here’s how you can interact with the API programmatically:
+## 📦 Dependencies
+
+| Dependency | Purpose |
+|------------|---------|
+| express | Web framework |
+| firebase-admin | Firebase integration |
+| openai | AI model integration |
+| winston | Logging system |
+| helmet | Security enhancements |
+| express-rate-limit | Rate limiting |
+| joi | Request validation |
+| morgan | HTTP request logging |
+
+## 🔒 Security Considerations
+
+- Environment variables should never be committed to version control
+- Always use HTTPS in production
+- Consider implementing JWT authentication for production use
+- Rotate API keys regularly
+- Implement IP whitelisting for production environments when possible
+
+## 🧪 Testing
 
 ```bash
-const fetch = require("node-fetch");
-
-async function interactWithAgent(agentName, message) {
-  const response = await fetch(`https://api.qude.ai/api/agent/${agentName}/interact`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message }),
-  });
-
-  if (!response.ok) {
-    console.error("Failed to interact with the agent:", response.statusText);
-    return;
-  }
-
-  const data = await response.json();
-  console.log("Agent Reply:", data.reply);
-}
-
-interactWithAgent("Aura", "Hello there!");
-```
----
-# USING api.qude.ai
-
-## Prerequisites
-
-To use the API, ensure you have the following:
-
-1. **API Access**: The API is publicly available at [api.qude.ai](https://api.qude.ai).
-2. **API Client**: Use a tool like `curl`, Postman, or any HTTP client library in your preferred programming language.
-
----
-
-## API Endpoints
-
-### 1. Fetch Agent Details
-Retrieve metadata about an agent from the official Qude Framework database.
-
-**GET** `/api/agent/:name`
-
-#### Request Example:
-```bash
-curl https://api.qude.ai/api/agent/Aura
-```
-**Response Example:**
-```bash
-{
-  "name": "Aura",
-  "description": "An intelligent agent designed to assist with tasks.",
-  "createdAt": "2025-01-01T12:00:00Z"
-}
-```
-#### 2. Interact with an Agent (GET Method)
-Send a message to an agent and receive an AI-generated response using query parameters.
-
-**GET** `/api/agent/:name/interact?message=YourMessage`
-
-**Request Example:**
-```bash
-curl "https://api.qude.ai/api/agent/Aura/interact?message=Hello!"
-```
-**Response Example:**
-```bash
-{
-  "agent": "Aura",
-  "reply": "Hello! How can I assist you today?"
-}
-```
-#### 3. Interact with an Agent (POST Method)
-Send a message to an agent and receive an AI-generated response using a JSON payload.
-
-**POST** `/api/agent/:name/interact`
-
-**Request Example:**
-```bash
-curl -X POST "https://api.qude.ai/api/agent/Aura/interact" \
--H "Content-Type: application/json" \
--d '{"message": "Hello, Aura"}'
-```
-**Response Example:**
-```bash
-{
-  "agent": "Aura",
-  "reply": "Hey, how can i help you?"
-}
-```
-## Example Usage in Node.js
-Here’s how you can interact with the API programmatically:
-```bash
-const fetch = require("node-fetch");
-
-async function interactWithAgent(agentName, message) {
-  const response = await fetch(`https://api.qude.ai/api/agent/${agentName}/interact`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message }),
-  });
-
-  if (!response.ok) {
-    console.error("Failed to interact with the agent:", response.statusText);
-    return;
-  }
-
-  const data = await response.json();
-  console.log("Agent Reply:", data.reply);
-}
-
-interactWithAgent("Aura", "Hello there!");
+npm test
 ```
 
-## Notes for api.qude.ai
-- No Local Setup Required: This API is fully hosted and ready to use—no Firebase setup or service account keys needed.
-- Agent Metadata: All agent information is sourced directly from the official Qude Framework database.
+## 📄 License
 
-## Contributing
-- We welcome contributions to enhance this API! If you encounter issues or have suggestions, feel free to open an issue or submit a pull request on our GitHub repository.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
+
+## 🔗 Related Projects
+
+- [Aptix Framework](https://github.com/aptixdotfun/aptix-framework) - Core framework for creating AI agents
+- [Aptix SDK](https://github.com/aptixdotfun/aptix-sdk) - Client SDK for interacting with Aptix agents
 
